@@ -1,0 +1,59 @@
+<%- include("../includes/header"); -%>
+
+<link rel="stylesheet" href="/CSS/style.css" type="text/css">
+
+</head>
+<body>
+
+  <main>
+
+<%- include("../includes/navigation"); %>
+
+<% if (products.length > 0) { %>
+ 
+  <div class="grid container">
+      <div class="grid-box row">
+        <% for( let i = 0; i < products.length; i++ ) { %> 
+          <div class="single-grid col col-lg-3 col-md-6 col-sm-12">
+              <div class="image">
+                  <img src="/<%= products[i].imgurl %> " class="img-thumbnail" alt="Image">
+              </div>
+              <div class="content">
+                  <h4 class="product-title"><%= products[i].title %> </h4>
+                  <h4 class="product-price">$<%= products[i].price %> </h4>
+                  <p class="product-description"><%= products[i].discription %> </p>
+              </div>
+              <div class="buttons del_form">
+                  <a class="edit-btn btn btn-dark" href="/admin/edit-product/<%= products[i]._id %>?edit=true">Edit</a>
+                  <form action="/admin/delete-product" method="POST">
+
+                    <input type="hidden" name="prodId" value="<%= products[i]._id %>">
+                    <button class="Details-btn btn btn-dark" type="submit">Delete</button>
+                    
+                  </form>
+              </div>
+
+          </div>
+        <% } %>
+          
+      </div>
+  </div>
+
+<% } else { %>
+    <div>
+      <h1>No products found!</h1>
+    </div>
+  <% } %> 
+   
+  <%- include("../includes/pagination", {
+    currentPage: currentPage,
+    hasNextPage: hasNextPage,
+    hasPreviousPage: hasPreviousPage,
+    nextPage: nextPage,
+    previousPage: previousPage,
+    lastPage: lastPage 
+  }); -%>
+
+  </main>
+
+    <%- include("../includes/footer"); -%>

@@ -1,0 +1,45 @@
+<%- include("../includes/header"); -%>
+
+<link rel="stylesheet" href="/CSS/auth.css" type="text/css">
+
+</head>
+<body>
+
+    <%- include("../includes/navigation"); %>
+
+<div class="register-box">
+    <div class="box hbox" id="heading">
+        <div>
+            <h1>Create an account</h1>
+        </div>
+    </div>
+
+    <div class="box">
+        <div>
+            <i class="fas fa-user-circle fa-3x"></i>
+        </div>
+
+        <form class="register" action="/register" method="POST">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                <input type="email" class="form-control" name="username" placeholder="email" value="<%= oldInput.email %>">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" name="password" placeholder="password" autocomplete="off" value="<%= oldInput.password %>">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" name="confirmPassword" placeholder="confirm password" autocomplete="off">
+            </div>
+            <div>
+                <p><%= errorMsg %> </p>
+            </div>
+            <button class="btn btn-outline-primary" type="submit">sign up</button>
+        </form>
+
+    </div>
+</div>
+
+
+<%- include("../includes/footer"); -%>

@@ -1,0 +1,41 @@
+<%- include("../includes/header"); -%>
+
+<link rel="stylesheet" href="/CSS/style.css" type="text/css">
+
+</head>
+<body>
+
+<main>
+    <%- include("../includes/navigation"); %>
+
+    <div>
+        <form action="/admin/<% if (editing) { %>edit-product<% }else { %>add-product<% } %>" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value="<% if (editing) { %><%= product.title %><% } %>">
+            </div>
+            <div>
+                <label for="image">Image</label>
+                <input type="file" name="image" id="image">
+            </div>
+            <div>
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" value="<% if (editing) { %><%= product.price %><% } %>">
+            </div>
+            <div>
+                <label for="discription">Discription</label>
+                <textarea name="discription" id="discription" cols="30" rows="10"><% if (editing) { %><%= product.discription %><% } %></textarea>
+            </div>
+
+            <% if (editing) { %>
+                <input type="hidden" value="<%= product._id %>" name="productId">
+            <% } %>
+            
+            <div>
+                <button class="btn" type="submit"><% if (editing) { %>Update<% } else { %>Add Product<% } %></button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<%- include("../includes/footer"); -%>
